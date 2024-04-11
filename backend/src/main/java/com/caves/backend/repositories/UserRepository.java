@@ -1,4 +1,4 @@
-package com.caves.backend.Repositories;
+package com.caves.backend.repositories;
 
 import java.util.Optional;
 
