@@ -13,7 +13,7 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(value = { AppException.class })
     @ResponseBody
-    public ResponseEntity<ErrorDto> handleAppException(AppException e) {
-        return ResponseEntity.status(e.getHttpStatus()).body(new ErrorDto(e.getMessage()));
+    public ResponseEntity<ErrorDto> handleAppException(AppException ex) {
+        return ResponseEntity.status(ex.getHttpStatus()).body(new ErrorDto(ex.getMessage()));
     }
 }
