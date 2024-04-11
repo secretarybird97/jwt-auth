@@ -10,8 +10,10 @@ import com.caves.backend.entities.User;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
+    @Mapping(target = "token", ignore = true)
     UserDto toUserDto(User user);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "password", ignore = true)
     User signUpToUser(SignUpDto signUpDto);
 }
