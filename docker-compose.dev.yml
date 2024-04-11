@@ -7,7 +7,7 @@ services:
     env_file:
       - .env.example
     networks:
-      - summarizer
+      - app
     volumes:
       - db-data:/var/lib/postgresql/data
 
@@ -19,7 +19,7 @@ services:
     env_file:
       - .env.example
     networks:
-      - summarizer
+      - app
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     depends_on:
@@ -46,7 +46,7 @@ services:
     ports:
       - 3000:3000
     networks:
-      - summarizer
+      - app
 
   frontend:
     restart: always
@@ -58,10 +58,10 @@ services:
     ports:
       - 4200:4200
     networks:
-      - summarizer
+      - app
 
 networks:
-  summarizer:
+  app:
     driver: bridge
 
 volumes:
