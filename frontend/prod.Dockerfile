@@ -12,18 +12,18 @@ RUN apk add --no-cache libc6-compat
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN pnpm install --frozen-lockfile
 
-FROM base AS builder
+FROM base AS build
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN ng build --optimization
 
-FROM base AS runner
+FROM base AS runtime
 
 RUN addgroup --system --gid 1002 nodejs
 RUN adduser --system --uid 1002 angular
 USER angular
 
-COPY --from=builder /app/dist ./dist
+COPY --from=build /app/dist ./dist
 COPY --from=deps /app/node_modules ./node_modules
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 
